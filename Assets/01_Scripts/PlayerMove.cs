@@ -6,6 +6,8 @@ public class PlayerMove : MonoBehaviour
 {
     [SerializeField] 
     private float _speed = 5f;
+    public Rigidbody2D rigid;
+    public Animator ani;
 
     void Update()
     {
@@ -16,6 +18,10 @@ public class PlayerMove : MonoBehaviour
         float hori = Input.GetAxisRaw("Horizontal");
         float verti = Input.GetAxisRaw("Vertical");
 
-        transform.Translate(new Vector3(hori, verti, 0).normalized * _speed * Time.deltaTime);
+        Vector2 dir = new Vector2(hori, verti);
+        rigid.velocity = dir.normalized * _speed;
+
+        ani.SetFloat("Horizontal", rigid.velocity.x);
+        ani.SetFloat("Vertical", rigid.velocity.y);
     }
 }
