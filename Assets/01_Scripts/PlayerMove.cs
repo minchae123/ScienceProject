@@ -18,4 +18,8 @@ public class PlayerMove : MonoBehaviour
 
         transform.Translate(new Vector3(hori, verti, 0).normalized * _speed * Time.deltaTime);
     }
+    
+    private void OnTriggerEnter(Collider other) {
+        
+    }
 }
