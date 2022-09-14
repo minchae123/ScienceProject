@@ -24,4 +24,8 @@ public class PlayerMove : MonoBehaviour
         ani.SetFloat("Horizontal", rigid.velocity.x);
         ani.SetFloat("Vertical", rigid.velocity.y);
     }
+    
+    private void OnTriggerEnter(Collider other) {
+        
+    }
 }
