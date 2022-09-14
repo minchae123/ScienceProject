@@ -8,9 +8,6 @@ public class MiniMapShow : MonoBehaviour
 {
     public RawImage miniMap;
 
-    //private int pushCount;
-
-
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.M))
