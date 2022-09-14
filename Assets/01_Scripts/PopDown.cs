@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 
+
 public class PopDown : MonoBehaviour
 {
      [SerializeField] GameObject panel;
@@ -16,4 +17,6 @@ public class PopDown : MonoBehaviour
 
         panel.SetActive(false);
      }
+
+ 
 }
