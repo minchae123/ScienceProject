@@ -5,7 +5,14 @@ using UnityEngine.UI;
 using UnityEngine.Events;
 
 public class CompassTrigger : MonoBehaviour
-{
+{   
+    public static CompassTrigger Instance = null;
+
+    private void Awake() {
+        if(Instance == null){
+            Instance = this;
+        }
+    }
     public UnityEvent PlayerTrigger;
 
     public Image compass;
@@ -26,7 +33,7 @@ public class CompassTrigger : MonoBehaviour
         }
     }
 
-    void CompassCounter(){
+    public void CompassCounter(){
         if(collectCount == 0)
             compass.fillAmount = 0;
 

@@ -12,14 +12,18 @@ public class ChooseQuiz : MonoBehaviour
 
     public void Correct()
     {
-        Debug.Log("Á¤´ä");
+        Debug.Log("ï¿½ï¿½ï¿½ï¿½");
 
         StartCoroutine(CorrectTime());
+
+        CompassTrigger.Instance.collectCount++;
+
+        CompassTrigger.Instance.CompassCounter();
     }
 
     public void Wrong()
     {
-        Debug.Log("¶¯¶¯");
+        Debug.Log("ï¿½ï¿½ï¿½ï¿½");
 
         StartCoroutine(WrongTime());
     }
@@ -45,6 +49,12 @@ public class ChooseQuiz : MonoBehaviour
         collextTxt.gameObject.SetActive(false);
 
         yield return new WaitForSeconds(0.5f);
+        
+        Sequence seq = DOTween.Sequence();
+
+        seq.Append(panel.transform.DOScale(new Vector3(1.05f, 1.05f), 0.4f));
+        seq.Append(panel.transform.DOScale(new Vector3(0, 0), 0.2f));
+
         panel.gameObject.SetActive(false);
     }
 }
