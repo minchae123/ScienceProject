@@ -17,7 +17,6 @@ public class DragQuiz : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
         group = GetComponent<CanvasGroup>();
     }
 
-
     public void OnBeginDrag(PointerEventData eventData) // 드래그 시작
     {
         previousParent = transform.parent; // 드래그 전 부모 Transform 저장
