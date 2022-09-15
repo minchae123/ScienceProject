@@ -7,54 +7,33 @@ using TMPro;
 
 public class ChooseQuiz : MonoBehaviour
 {
-    public Image panel;
-    public TextMeshProUGUI collextTxt; 
+    public static ChooseQuiz Instance = null;
+
+    public RectTransform quizPanel;
+
+    private void Awake() {
+        if(Instance == null){
+            Instance = this;
+        }
+    }
+
 
     public void Correct()
     {
-        Debug.Log("����");
+        Debug.Log("정답");
 
-        StartCoroutine(CorrectTime());
+        StartCoroutine(QuizManager.Instance.CorrectTime(quizPanel));
 
-        CompassTrigger.Instance.collectCount++;
+        QuizManager.Instance.collectCount++;
 
-        CompassTrigger.Instance.CompassCounter();
+        QuizManager.Instance.CompassCounter();
     }
 
     public void Wrong()
     {
-        Debug.Log("����");
+        Debug.Log("오답");
 
-        StartCoroutine(WrongTime());
+        StartCoroutine(QuizManager.Instance.WrongTime(gameObject));
     }
 
-    IEnumerator WrongTime()
-    {
-        Color targetColor = new Color();
-        targetColor = Color.red;
-        targetColor.a = 0.65f;
-        panel.color = targetColor;
-        panel.transform.DOShakePosition(1, 5f);
-        yield return new WaitForSeconds(1f);
-
-        targetColor = new Color(0.23f, 0.3f, 0.33f);
-        targetColor.a = 0.65f;
-        panel.color = targetColor;
-    }
-
-    IEnumerator CorrectTime()
-    {
-        collextTxt.gameObject.SetActive(true);
-        yield return new WaitForSeconds(1.5f);
-        collextTxt.gameObject.SetActive(false);
-
-        yield return new WaitForSeconds(0.5f);
-        
-        Sequence seq = DOTween.Sequence();
-
-        seq.Append(panel.transform.DOScale(new Vector3(1.05f, 1.05f), 0.4f));
-        seq.Append(panel.transform.DOScale(new Vector3(0, 0), 0.2f));
-
-        panel.gameObject.SetActive(false);
-    }
 }
