@@ -13,7 +13,7 @@ public class DragQuiz : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
     private CanvasGroup group;
 
     public TextMeshProUGUI corrextTxt;
-    public Image panel;
+    public RectTransform panel;
 
     private bool isEnd = false;
 
@@ -31,7 +31,9 @@ public class DragQuiz : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
         if(count > 1 && isEnd == false)
         {
             isEnd = true;
-            StartCoroutine(CorrectTime());
+            QuizManager.Instance.collectCount++;
+            QuizManager.Instance.CompassCounter();
+            QuizManager.Instance.StartCorrectTime(panel);
         }
     }
 
@@ -82,6 +84,10 @@ public class DragQuiz : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
             Debug.Log("Co");
             StartCoroutine(Correct());
         }
+        else
+        {
+            QuizManager.Instance.StartWrongTime(gameObject);
+        }
     }
 
     public void ResetDrag()
@@ -104,15 +110,4 @@ public class DragQuiz : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
         corrextTxt.fontSize = 475;
     }
 
-    IEnumerator CorrectTime()
-    {
-        yield return new WaitForSeconds(0.5f);
-
-        corrextTxt.gameObject.SetActive(true);
-        yield return new WaitForSeconds(1.5f);
-        corrextTxt.gameObject.SetActive(false);
-
-        yield return new WaitForSeconds(0.5f);
-        panel.gameObject.SetActive(false);
-    }
 }
