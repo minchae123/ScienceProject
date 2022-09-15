@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using TMPro;
 
 public class DragQuiz : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
@@ -10,6 +12,13 @@ public class DragQuiz : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
     private RectTransform rect;
     private CanvasGroup group;
 
+    public TextMeshProUGUI corrextTxt;
+    public RectTransform panel;
+
+    private bool isEnd = false;
+
+    public int count = 0;
+
     private void Awake()
     {
         canvas = FindObjectOfType<Canvas>().transform;
@@ -17,24 +26,35 @@ public class DragQuiz : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
         group = GetComponent<CanvasGroup>();
     }
 
-    public void OnBeginDrag(PointerEventData eventData) // ï¿½å·¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+    private void Update()
     {
-        previousParent = transform.parent; // ï¿½å·¡ï¿½ï¿½ ï¿½ï¿½ ï¿½Î¸ï¿½ Transform ï¿½ï¿½ï¿½ï¿½
-
-        // ï¿½å·¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Ui Ç¥ï¿½ï¿½
-        transform.SetParent(canvas);  // ï¿½Î¸ï¿½ Äµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
-        transform.SetAsFirstSibling();  // ï¿½ï¿½ï¿½ï¿½ ï¿½Õ¿ï¿½ ï¿½ï¿½ï¿½Ì±ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ ï¿½ï¿½ï¿½ï¿½
-
-        group.alpha = 0.6f;
-        group.blocksRaycasts = false; // ï¿½ï¿½ï¿½ï¿½ ï¿½âµ¿ ï¿½ï¿½ï¿½Ï°ï¿½ 
+        if(count > 1 && isEnd == false)
+        {
+            isEnd = true;
+            QuizManager.Instance.collectCount++;
+            QuizManager.Instance.CompassCounter();
+            QuizManager.Instance.StartCorrectTime(panel);
+        }
     }
 
-    public void OnDrag(PointerEventData eventData) // ï¿½å·¡ï¿½ï¿½ ï¿½ï¿½ï¿½Ï¶ï¿½
+    public void OnBeginDrag(PointerEventData eventData) // µå·¡±× ½ÃÀÛ
     {
-        rect.position = eventData.position; // ui ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½ï¿½ï¿½ì½º ï¿½ï¿½Ä¡ï¿½ï¿½ 
+        previousParent = transform.parent; // µå·¡±× Àü ºÎ¸ð Transform ÀúÀå
+
+        // µå·¡±× ÁßÀÎ Ui Ç¥½Ã
+        transform.SetParent(canvas);  // ºÎ¸ð Äµ¹ö½º·Î ¼³Á¤
+        transform.SetAsFirstSibling();  // °¡Àå ¾Õ¿¡ º¸ÀÌ±â À§ÇØ À§Ä¡ Á¶Á¤
+
+        group.alpha = 0.8f;
+        group.blocksRaycasts = true; // ±¤¼± Ãâµ¿ ¸øÇÏ°Ô 
     }
 
-    public void OnEndDrag(PointerEventData eventData) // ï¿½å·¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ò¶ï¿½ 1ï¿½ï¿½ È£ï¿½ï¿½
+    public void OnDrag(PointerEventData eventData) // µå·¡±× ÁßÀÏ¶§
+    {
+        rect.position = eventData.position; // ui À§Ä¡¸¦ ¸¶¿ì½º À§Ä¡·Î 
+    }
+
+    public void OnEndDrag(PointerEventData eventData) // µå·¡±× Á¾·á ÇÒ¶§ 1¹ø È£Ãâ
     {
         if(transform.parent == canvas)
         {
@@ -43,10 +63,51 @@ public class DragQuiz : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
         }
 
         group.alpha = 1f;
-        group.blocksRaycasts = false; // ï¿½ï¿½ï¿½ï¿½ ï¿½æµ¹ ï¿½ï¿½ï¿½ï¿½ï¿½Ï°ï¿½
+        //group.blocksRaycasts = false; // ±¤¼± Ãæµ¹ °¡´ÉÇÏ°Ô
+
+        if(transform.parent.gameObject.tag == transform.tag)
+        {
+            count++;
+            FindObjectsOfType<DragQuiz>();
+            foreach(DragQuiz q in FindObjectsOfType<DragQuiz>())
+            {
+                if(q == this)
+                {
+
+                }
+                else
+                {
+                    q.count = this.count;
+                }
+            }
+
+            Debug.Log("Co");
+            StartCoroutine(Correct());
+        }
+        else
+        {
+            QuizManager.Instance.StartWrongTime(gameObject);
+        }
     }
 
+    public void ResetDrag()
+    {
+        transform.SetParent(previousParent);
 
+        rect.position = previousParent.GetComponent<RectTransform>().position;
+        count = 0;
+        //group.blocksRaycasts = true;
+        
+        //gameObject.transform = previousParent;
+    }
 
+    IEnumerator Correct()
+    {
+        corrextTxt.fontSize = 200;
+        corrextTxt.gameObject.SetActive(true);
+        yield return new WaitForSeconds(1.5f);
+        corrextTxt.gameObject.SetActive(false);
+        corrextTxt.fontSize = 475;
+    }
 
 }
