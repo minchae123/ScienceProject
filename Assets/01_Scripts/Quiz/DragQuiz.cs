@@ -45,8 +45,4 @@ public class DragQuiz : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
         group.alpha = 1f;
         group.blocksRaycasts = false; // 광선 충돌 가능하게
     }
-
-
-
-
 }
