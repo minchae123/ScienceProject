@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using TMPro;
 
 public class DragQuiz : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
@@ -10,11 +12,27 @@ public class DragQuiz : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
     private RectTransform rect;
     private CanvasGroup group;
 
+    public TextMeshProUGUI corrextTxt;
+    public Image panel;
+
+    private bool isEnd = false;
+
+    public int count = 0;
+
     private void Awake()
     {
         canvas = FindObjectOfType<Canvas>().transform;
         rect = GetComponent<RectTransform>();
         group = GetComponent<CanvasGroup>();
+    }
+
+    private void Update()
+    {
+        if(count > 1 && isEnd == false)
+        {
+            isEnd = true;
+            StartCoroutine(CorrectTime());
+        }
     }
 
     public void OnBeginDrag(PointerEventData eventData) // 드래그 시작
@@ -25,8 +43,8 @@ public class DragQuiz : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
         transform.SetParent(canvas);  // 부모 캔버스로 설정
         transform.SetAsFirstSibling();  // 가장 앞에 보이기 위해 위치 조정
 
-        group.alpha = 0.6f;
-        group.blocksRaycasts = false; // 광선 출동 못하게 
+        group.alpha = 0.8f;
+        group.blocksRaycasts = true; // 광선 출동 못하게 
     }
 
     public void OnDrag(PointerEventData eventData) // 드래그 중일때
@@ -43,6 +61,58 @@ public class DragQuiz : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
         }
 
         group.alpha = 1f;
-        group.blocksRaycasts = false; // 광선 충돌 가능하게
+        //group.blocksRaycasts = false; // 광선 충돌 가능하게
+
+        if(transform.parent.gameObject.tag == transform.tag)
+        {
+            count++;
+            FindObjectsOfType<DragQuiz>();
+            foreach(DragQuiz q in FindObjectsOfType<DragQuiz>())
+            {
+                if(q == this)
+                {
+
+                }
+                else
+                {
+                    q.count = this.count;
+                }
+            }
+
+            Debug.Log("Co");
+            StartCoroutine(Correct());
+        }
+    }
+
+    public void ResetDrag()
+    {
+        transform.SetParent(previousParent);
+
+        rect.position = previousParent.GetComponent<RectTransform>().position;
+        count = 0;
+        //group.blocksRaycasts = true;
+        
+        //gameObject.transform = previousParent;
+    }
+
+    IEnumerator Correct()
+    {
+        corrextTxt.fontSize = 200;
+        corrextTxt.gameObject.SetActive(true);
+        yield return new WaitForSeconds(1.5f);
+        corrextTxt.gameObject.SetActive(false);
+        corrextTxt.fontSize = 475;
+    }
+
+    IEnumerator CorrectTime()
+    {
+        yield return new WaitForSeconds(0.5f);
+
+        corrextTxt.gameObject.SetActive(true);
+        yield return new WaitForSeconds(1.5f);
+        corrextTxt.gameObject.SetActive(false);
+
+        yield return new WaitForSeconds(0.5f);
+        panel.gameObject.SetActive(false);
     }
 }

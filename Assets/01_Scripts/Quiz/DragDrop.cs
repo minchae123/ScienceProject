@@ -24,7 +24,7 @@ public class DragDrop : MonoBehaviour, IPointerDownHandler, IDragHandler
 
     private void Update()
     {
-        Pos1();
+
     }
 
     // 드래그 시작 위치 지정
@@ -43,12 +43,12 @@ public class DragDrop : MonoBehaviour, IPointerDownHandler, IDragHandler
 
     public void Pos1()
     {
-        float distance = Vector3.Distance(transform.position, targetTr.position);
-
-        if (distance < 0.5f)
-        {
-            gameObject.transform.SetParent(targetTr);
-            transform.position = targetTr.position;
-        }
+       
     }
+
+    public void ResetDrag()
+    {
+        transform.position = startPos;
+    }
+
 }
