@@ -945,7 +945,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &249295260
 RectTransform:
   m_ObjectHideFlags: 0
@@ -64733,12 +64733,12 @@ GameObject:
   - component: {fileID: 794867946}
   - component: {fileID: 794867945}
   m_Layer: 5
-  m_Name: QuizJiGu (1)
+  m_Name: QuizDoSun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &794867944
 RectTransform:
   m_ObjectHideFlags: 0
@@ -133750,7 +133750,7 @@ GameObject:
   - component: {fileID: 1139520552}
   - component: {fileID: 1139520551}
   m_Layer: 5
-  m_Name: ' correct'
+  m_Name: CorrectTxt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
