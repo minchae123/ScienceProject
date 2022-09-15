@@ -19,15 +19,10 @@ public class BlankQuiz : MonoBehaviour
 
     public void CheckText(string txt)
     {
-<<<<<<< Updated upstream
-=======
         Debug.Log("실행됨");
->>>>>>> Stashed changes
             if (text == txt)
             {   
-                QuizManager.Instance.collectCount++;
-                QuizManager.Instance.CompassCounter();
-                
+                Debug.Log("일치");
                 QuizManager.Instance.StartCorrectTime(quizPanel);
             }
             else
