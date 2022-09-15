@@ -19,10 +19,11 @@ public class BlankQuiz : MonoBehaviour
 
     public void CheckText(string txt)
     {
-        Debug.Log("tg");
             if (text == txt)
             {   
-                Debug.Log("일치");
+                QuizManager.Instance.collectCount++;
+                QuizManager.Instance.CompassCounter();
+                
                 QuizManager.Instance.StartCorrectTime(quizPanel);
                 Debug.Log("자살할게");
             }

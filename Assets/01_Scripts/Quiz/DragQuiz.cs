@@ -17,24 +17,24 @@ public class DragQuiz : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
         group = GetComponent<CanvasGroup>();
     }
 
-    public void OnBeginDrag(PointerEventData eventData) // µå·¡±× ½ÃÀÛ
+    public void OnBeginDrag(PointerEventData eventData) // ï¿½å·¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     {
-        previousParent = transform.parent; // µå·¡±× Àü ºÎ¸ð Transform ÀúÀå
+        previousParent = transform.parent; // ï¿½å·¡ï¿½ï¿½ ï¿½ï¿½ ï¿½Î¸ï¿½ Transform ï¿½ï¿½ï¿½ï¿½
 
-        // µå·¡±× ÁßÀÎ Ui Ç¥½Ã
-        transform.SetParent(canvas);  // ºÎ¸ð Äµ¹ö½º·Î ¼³Á¤
-        transform.SetAsFirstSibling();  // °¡Àå ¾Õ¿¡ º¸ÀÌ±â À§ÇØ À§Ä¡ Á¶Á¤
+        // ï¿½å·¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Ui Ç¥ï¿½ï¿½
+        transform.SetParent(canvas);  // ï¿½Î¸ï¿½ Äµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+        transform.SetAsFirstSibling();  // ï¿½ï¿½ï¿½ï¿½ ï¿½Õ¿ï¿½ ï¿½ï¿½ï¿½Ì±ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ ï¿½ï¿½ï¿½ï¿½
 
         group.alpha = 0.6f;
-        group.blocksRaycasts = false; // ±¤¼± Ãâµ¿ ¸øÇÏ°Ô 
+        group.blocksRaycasts = false; // ï¿½ï¿½ï¿½ï¿½ ï¿½âµ¿ ï¿½ï¿½ï¿½Ï°ï¿½ 
     }
 
-    public void OnDrag(PointerEventData eventData) // µå·¡±× ÁßÀÏ¶§
+    public void OnDrag(PointerEventData eventData) // ï¿½å·¡ï¿½ï¿½ ï¿½ï¿½ï¿½Ï¶ï¿½
     {
-        rect.position = eventData.position; // ui À§Ä¡¸¦ ¸¶¿ì½º À§Ä¡·Î 
+        rect.position = eventData.position; // ui ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½ï¿½ï¿½ì½º ï¿½ï¿½Ä¡ï¿½ï¿½ 
     }
 
-    public void OnEndDrag(PointerEventData eventData) // µå·¡±× Á¾·á ÇÒ¶§ 1¹ø È£Ãâ
+    public void OnEndDrag(PointerEventData eventData) // ï¿½å·¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ò¶ï¿½ 1ï¿½ï¿½ È£ï¿½ï¿½
     {
         if(transform.parent == canvas)
         {
@@ -43,7 +43,7 @@ public class DragQuiz : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
         }
 
         group.alpha = 1f;
-        group.blocksRaycasts = false; // ±¤¼± Ãæµ¹ °¡´ÉÇÏ°Ô
+        group.blocksRaycasts = false; // ï¿½ï¿½ï¿½ï¿½ ï¿½æµ¹ ï¿½ï¿½ï¿½ï¿½ï¿½Ï°ï¿½
     }
 
 
