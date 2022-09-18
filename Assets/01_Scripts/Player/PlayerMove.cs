@@ -4,10 +4,19 @@ using UnityEngine;
 
 public class PlayerMove : MonoBehaviour
 {
-    [SerializeField] 
-    private float _speed = 5f;
+
+    public static PlayerMove Instance = null;
+
+    public float _speed = 10f;
     public Rigidbody2D rigid;
     public Animator ani;
+
+
+    private void Awake() {
+        if(Instance == null){
+            Instance = this;
+        }
+    }
 
     void Update()
     {
@@ -24,8 +33,16 @@ public class PlayerMove : MonoBehaviour
         ani.SetFloat("Horizontal", rigid.velocity.x);
         ani.SetFloat("Vertical", rigid.velocity.y);
     }
-    
-    private void OnTriggerEnter(Collider other) {
-        
+
+    public void StopMove(){
+        if(QuizManager.Instance._isPlayerTrigger == true){
+            _speed = 0;
+        } 
+
+        if(QuizManager.Instance._isPlayerTrigger == false){
+            _speed = 10f;
+        }
     }
+    
+    
 }

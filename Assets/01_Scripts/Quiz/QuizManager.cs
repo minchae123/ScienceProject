@@ -12,6 +12,7 @@ public class QuizManager : MonoBehaviour
 
     public int collectCount = 0;
     public Image fillCompass;
+    public bool _isPlayerTrigger;
 
     public TextMeshProUGUI correctText; 
 
@@ -63,6 +64,8 @@ public class QuizManager : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         
         PopDown(panel);
+        QuizManager.Instance._isPlayerTrigger = false;
+        PlayerMove.Instance.StopMove();
     }
 
     void PopDown(RectTransform panel){
