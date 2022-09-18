@@ -14257,7 +14257,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 104654139}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.84, y: -0.9, z: 268.81818}
+  m_LocalPosition: {x: 2.61, y: -0.99, z: 268.81818}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 620938405}
@@ -14540,7 +14540,7 @@ RectTransform:
   m_GameObject: {fileID: 231288400}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0, y: 0, z: 1}
   m_Children:
   - {fileID: 332771404}
   m_Father: {fileID: 1759980151}
@@ -14596,8 +14596,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1759980152}
-        m_TargetAssemblyTypeName: ChooseSol, Assembly-CSharp
-        m_MethodName: Wrong
+        m_TargetAssemblyTypeName: ChooseQuiz, Assembly-CSharp
+        m_MethodName: Correct
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -15297,8 +15297,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: "\uC6D0\uD615 \uB3C4\uC120\uC5D0\uC11C \uC790\uAE30\uC7A5\uC758 \uC138\uAE30\uB294
-    \n\uC804\uB958\uC758 \uC138\uAE30\uC5D0 \uBE44\uB840\uD558\uACE0, \uB3C4\uC120\uC774
-    \uB9CC\uB4DC\uB294 \n\uC6D0\uC758 \uBC18\uC9C0\uB984\uC5D0 \uBC18\uBE44\uB840\uD55C\uB2E4."
+    \n\uC804\uB958\uC758 \uC138\uAE30\uC5D0 \uBC18\uBE44\uB840\uD558\uACE0, \uB3C4\uC120\uC774
+    \uB9CC\uB4DC\uB294 \n\uC6D0\uC758 \uBC18\uC9C0\uB984\uC5D0 \uBE44\uB840\uD55C\uB2E4."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 92a85bd71e6fc4e4f80c39d55d955dae, type: 2}
   m_sharedMaterial: {fileID: -5908916926578360592, guid: 92a85bd71e6fc4e4f80c39d55d955dae, type: 2}
@@ -83372,7 +83372,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1759980152}
         m_TargetAssemblyTypeName: ChooseQuiz, Assembly-CSharp
-        m_MethodName: Correct
+        m_MethodName: Wrong
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -137756,7 +137756,7 @@ RectTransform:
   m_GameObject: {fileID: 1759980150}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0, y: 0, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 751448501}
   - {fileID: 1665488782}
