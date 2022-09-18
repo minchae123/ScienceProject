@@ -45,6 +45,7 @@ public class QuizManager : MonoBehaviour
     }
 
     public void StartCorrectTime(RectTransform panel){
+        
         StartCoroutine(CorrectTime(panel));
     }
 
@@ -54,6 +55,7 @@ public class QuizManager : MonoBehaviour
 
     public IEnumerator CorrectTime(RectTransform panel)
     {   
+
         correctText.gameObject.SetActive(true);
         yield return new WaitForSeconds(1.5f);
         correctText.gameObject.SetActive(false);
