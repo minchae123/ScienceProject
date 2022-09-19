@@ -135892,9 +135892,9 @@ MonoBehaviour:
   PlayerTrigger:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 199627603}
         m_TargetAssemblyTypeName: PopUp, Assembly-CSharp
-        m_MethodName: PopUpPanel
+        m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -136921,6 +136921,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   collectCount: 0
   fillCompass: {fileID: 263802091}
+  _isPlayerTrigger: 0
   correctText: {fileID: 1139520551}
   CompassAllCollectEvent:
     m_PersistentCalls:

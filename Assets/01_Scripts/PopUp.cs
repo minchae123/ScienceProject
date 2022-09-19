@@ -12,6 +12,7 @@ public class PopUp : MonoBehaviour
     {
         panel.SetActive(true);
 
+
         Sequence seq = DOTween.Sequence();
 
         seq.Append(panel.transform.DOScale(new Vector3(1.05f, 1.05f), 0.4f));
