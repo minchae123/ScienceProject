@@ -40,7 +40,7 @@ public class PlayerMove : MonoBehaviour
         } 
 
         if(QuizManager.Instance._isPlayerTrigger == false){
-            _speed = 10f;
+            _speed = 15f;
         }
     }
     
