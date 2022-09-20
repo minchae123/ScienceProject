@@ -5,11 +5,12 @@ using DG.Tweening;
 
 public class PopUp : MonoBehaviour
 {   
-
     [SerializeField] GameObject panel;
+    public GameObject pl;
 
     public void PopUpPanel()
     {
+        //pl.SetActive(false);
         panel.SetActive(true);
 
         Sequence seq = DOTween.Sequence();

@@ -7,6 +7,7 @@ TagManager:
   - Compass
   - LO
   - VE
+  - FxTemporaire
   layers:
   - Default
   - TransparentFX
@@ -43,4 +44,10 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: fr
+    uniqueID: 890289833
+    locked: 0
+  - name: ba
+    uniqueID: 1973673229
     locked: 0

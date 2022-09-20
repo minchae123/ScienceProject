@@ -14,7 +14,9 @@ public class QuizManager : MonoBehaviour
     public Image fillCompass;
     public bool _isPlayerTrigger;
 
-    public TextMeshProUGUI correctText; 
+    public TextMeshProUGUI correctText;
+
+    public GameObject pl;
 
     
     public UnityEvent CompassAllCollectEvent;
@@ -70,7 +72,7 @@ public class QuizManager : MonoBehaviour
 
     void PopDown(RectTransform panel){
 
-
+        //pl.SetActive(true);
         Debug.Log("작동");
         Sequence seq = DOTween.Sequence();
 
