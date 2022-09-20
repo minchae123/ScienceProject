@@ -16,10 +16,7 @@ public class QuizManager : MonoBehaviour
 
     public TextMeshProUGUI correctText;
 
-    public GameObject pl;
-
     
-    public UnityEvent CompassAllCollectEvent;
     private void Awake() {
         if(Instance == null){
             Instance = this;
@@ -119,6 +116,6 @@ public class QuizManager : MonoBehaviour
 
         if(QuizManager.Instance.collectCount == 10)
             fillCompass.fillAmount = 1;
-            CompassAllCollectEvent?.Invoke();
+            
     }
 }
