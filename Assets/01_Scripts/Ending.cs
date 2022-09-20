@@ -11,10 +11,26 @@ public class Ending : MonoBehaviour
     public Text _endingText;
 
     public GameObject _endingPanel;
+    public GameObject _endingPanel2;
     bool isTouch = false;
 
+    public float ti = 0;
+    bool isFinsih = false;
+    
     private void Awake() {
         _compassImage.gameObject.SetActive(false);
+    }
+
+    private void Update()
+    {
+        if(isFinsih == true)
+        {
+            if (ti <= 1)
+            {
+                ti += Time.deltaTime * 1.5f;
+                _compassImage.fillAmount = ti;
+            }
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -28,7 +44,7 @@ public class Ending : MonoBehaviour
         {
             isTouch = true;
             Debug.Log("-0-");
-            StartCoroutine(NOTime(_endingPanel));
+            StartCoroutine(NOTime(_endingPanel2));
         }
     }
 
@@ -40,10 +56,11 @@ public class Ending : MonoBehaviour
         seq.Append(_endingPanel.transform.DOScale(new Vector3(1.05f, 1.05f), 0.4f));
         seq.Append(_endingPanel.transform.DOScale(new Vector3(1f, 1f), 0.2f));
 
-
-        seq.Append(_compassImage.DOFillAmount(1f, 2f));
-        
         seq.Append(_endingText.DOText("당신을 \" 전 류 의 자 기 작 용  【 마 스 터 】 \" 로 임명하겠다.", 3));
+        _compassImage.gameObject.SetActive(true);
+        isFinsih = true;
+        //seq.Append(_compassImage.DOFillAmount(1f, 2f));
+        
 
     }
 

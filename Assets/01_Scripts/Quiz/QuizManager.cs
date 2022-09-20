@@ -23,6 +23,14 @@ public class QuizManager : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.F1))
+        {
+            collectCount = 10;
+        }
+    }
+
     public IEnumerator WrongTime(GameObject panel)
     {   
         Color targetColor = new Color();
