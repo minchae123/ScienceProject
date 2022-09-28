@@ -29,6 +29,8 @@ public class DragQuiz : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
         canvas = FindObjectOfType<Canvas>().transform;
         rect = GetComponent<RectTransform>();
         group = GetComponent<CanvasGroup>();
+
+        previousParent = transform.parent; // 드래그 전 부모 Transform 저장
     }
 
     private void Update()
@@ -125,7 +127,7 @@ public class DragQuiz : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
         count = 0;
         wrongcount = 0;
         group.blocksRaycasts = true;
-        //gameObject.transform = previousParent;
+        previousParent = transform.parent;
     }
 
     IEnumerator Correct()
