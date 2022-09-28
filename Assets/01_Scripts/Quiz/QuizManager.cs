@@ -124,6 +124,5 @@ public class QuizManager : MonoBehaviour
 
         if(QuizManager.Instance.collectCount == 10)
             fillCompass.fillAmount = 1;
-            
     }
 }
