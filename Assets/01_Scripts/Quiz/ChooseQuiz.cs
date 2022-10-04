@@ -17,13 +17,23 @@ public class ChooseQuiz : MonoBehaviour
         }
     }
 
+    public GameObject reason;
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            //reason.gameObject.SetActive(false);
+            Destroy(reason);
+        }
+    }
 
     public void Correct()
     {
         Debug.Log("정답");
 
-        StartCoroutine(QuizManager.Instance.CorrectTime(quizPanel));
-
+        //StartCoroutine(QuizManager.Instance.CorrectTime(quizPanel));
+        StartCoroutine(Reason());
         QuizManager.Instance.collectCount++;
 
         QuizManager.Instance.CompassCounter();
@@ -34,6 +44,20 @@ public class ChooseQuiz : MonoBehaviour
         Debug.Log("오답");
 
         StartCoroutine(QuizManager.Instance.WrongTime(gameObject));
+    }
+
+    IEnumerator Reason()
+    {
+        StartCoroutine(QuizManager.Instance.CorrectTime(quizPanel));
+        yield return new WaitForSeconds(2.5f);
+
+        reason.gameObject.SetActive(true);
+        Debug.Log(1);
+       
+           
+        
+        Debug.Log(12);
+        //Destroy(reason);
     }
 
 }

@@ -11,12 +11,14 @@ public class BlankQuiz : MonoBehaviour
     public TMP_InputField inputField;
 
     public RectTransform quizPanel;
+   
 
     private void Start()
     {
         inputField.ActivateInputField();
     }
 
+    
     public void CheckText(string txt)
     {
         Debug.Log("실행됨");

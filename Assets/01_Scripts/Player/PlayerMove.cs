@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class PlayerMove : MonoBehaviour
 {
-
     public static PlayerMove Instance = null;
 
     public float _speed = 10f;

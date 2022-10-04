@@ -24,11 +24,17 @@ public class DragQuiz : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
     public Image im;
     public Image pa;
 
+    public GameObject pll;
+
+    private PopUp p;
+
     private void Awake()
     {
         canvas = FindObjectOfType<Canvas>().transform;
         rect = GetComponent<RectTransform>();
         group = GetComponent<CanvasGroup>();
+
+        p = GetComponent<PopUp>();
 
         previousParent = transform.parent; // 드래그 전 부모 Transform 저장
     }
@@ -38,9 +44,11 @@ public class DragQuiz : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
         if(count == 2 && isEnd == false)
         {
             isEnd = true;
+            //p.PopUpPanel2();
             QuizManager.Instance.collectCount++;
             QuizManager.Instance.CompassCounter();
-            QuizManager.Instance.StartCorrectTime(panel);
+            //QuizManager.Instance.StartCorrectTime(panel);
+            StartCoroutine(Reason());
             count = 0;
             wrongcount = 0;
         }
@@ -49,6 +57,12 @@ public class DragQuiz : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
         {
             QuizManager.Instance.StartWrongTime(pa.gameObject);
             ResetDrag();
+        }
+
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            //reason.gameObject.SetActive(false);
+            Destroy(pll);
         }
     }
 
@@ -128,6 +142,15 @@ public class DragQuiz : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
         wrongcount = 0;
         group.blocksRaycasts = true;
         previousParent = transform.parent;
+    }
+
+    IEnumerator Reason()
+    {
+        StartCoroutine(QuizManager.Instance.CorrectTime(panel));
+        yield return new WaitForSeconds(2.5f);
+
+        pll.gameObject.SetActive(true);
+
     }
 
     IEnumerator Correct()
